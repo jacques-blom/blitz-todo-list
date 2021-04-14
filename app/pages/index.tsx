@@ -5,24 +5,22 @@ import {BlitzPage} from 'blitz'
 import {useState} from 'react'
 
 const Tasks: BlitzPage = () => {
-    const [newTask, setNewTask] = useState('')
-    const [c, setC] = useState(false)
+    const [newTaskLabel, setNewTaskLabel] = useState('')
 
     return (
         <div>
             <Task
-                task={{id: 1, label: 'Example task', checked: c}}
+                task={{label: 'Example', checked: true}}
                 onClick={() => {
-                    setC(!c)
-                    console.log("TODO: Toggle the task's checked state")
+                    console.log(`TODO: Toggle the task's checked state`)
                 }}
             />
             <Input
-                value={newTask}
-                onChange={setNewTask}
-                onPressEnter={() => {
-                    console.log('TODO: Insert task', newTask)
-                    setNewTask('')
+                value={newTaskLabel}
+                onChange={setNewTaskLabel}
+                onPressEnter={async () => {
+                    console.log('TODO: Insert new task with label: ', newTaskLabel)
+                    setNewTaskLabel('')
                 }}
             />
         </div>

@@ -1,5 +1,5 @@
-import {ReactNode} from 'react'
 import {Head} from 'blitz'
+import {ReactNode} from 'react'
 import {Heading} from '../components/Heading'
 
 type LayoutProps = {

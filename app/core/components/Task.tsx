@@ -6,7 +6,6 @@ export const containerStyle =
 export const textStyle = 'relative text-md color-gray-50'
 
 type TaskType = {
-    id: number
     checked: boolean
     label: string
 }
