@@ -1,7 +1,8 @@
 import classNames from 'classnames'
 import React from 'react'
 
-export const containerStyle = 'h-12 mb-5 flex items-center rounded-full bg-gray-700 shadow-md px-4'
+export const containerStyle =
+    'h-12 mb-5 flex items-center rounded-full bg-gray-700 shadow-md px-4 focus:ring outline-none'
 export const textStyle = 'relative text-md color-gray-50'
 
 type TaskType = {
@@ -15,7 +16,7 @@ export const Task: React.FC<{task: TaskType; onClick: () => void}> = ({task, onC
         <div
             onClick={onClick}
             onKeyPress={onClick}
-            className={containerStyle}
+            className={classNames(containerStyle, 'cursor-pointer')}
             role="checkbox"
             aria-checked={task.checked}
             tabIndex={0}
@@ -28,7 +29,7 @@ export const Task: React.FC<{task: TaskType; onClick: () => void}> = ({task, onC
             >
                 <img
                     src="/check.svg"
-                    className={classNames('transition-opacity', task.checked ? 'opacity-100' : 'opacity-0')}
+                    className={classNames('transition-opacity w-3', task.checked ? 'opacity-100' : 'opacity-0')}
                     alt="check"
                 />
             </div>
@@ -36,7 +37,7 @@ export const Task: React.FC<{task: TaskType; onClick: () => void}> = ({task, onC
                 {task.label}
                 <div
                     className={classNames(
-                        'absolute top-1/2 -left-1 -right-1 h-0.5 transform origin-left transition-transform',
+                        'absolute top-1/2 -left-1 -right-1 h-0.5 transform origin-left transition-transform bg-blue-400',
                         task.checked ? 'scale-x-1' : 'scale-x-0',
                     )}
                 />

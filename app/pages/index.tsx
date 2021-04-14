@@ -6,12 +6,14 @@ import {useState} from 'react'
 
 const Tasks: BlitzPage = () => {
     const [newTask, setNewTask] = useState('')
+    const [c, setC] = useState(false)
 
     return (
         <div>
             <Task
-                task={{id: 1, label: 'Example task', checked: false}}
+                task={{id: 1, label: 'Example task', checked: c}}
                 onClick={() => {
+                    setC(!c)
                     console.log("TODO: Toggle the task's checked state")
                 }}
             />
