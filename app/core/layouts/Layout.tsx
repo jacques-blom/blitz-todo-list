@@ -1,6 +1,5 @@
 import {ReactNode} from 'react'
 import {Head} from 'blitz'
-import styled from 'styled-components'
 import {Heading} from '../components/Heading'
 
 type LayoutProps = {
@@ -8,23 +7,15 @@ type LayoutProps = {
     children: ReactNode
 }
 
-const Container = styled.div`
-    width: 100%;
-    max-width: 560px;
-    padding: 20px;
-    box-sizing: border-box;
-    margin: 0 auto;
-`
-
 const Layout = ({title, children}: LayoutProps) => {
     return (
-        <Container>
+        <div className="w-full max-w-xl px-5 box-border mx-auto">
             <Head>
                 <title>{title || 'BlitzTodos'}</title>
             </Head>
             <Heading>{title}</Heading>
             {children}
-        </Container>
+        </div>
     )
 }
 

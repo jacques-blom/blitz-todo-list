@@ -1,67 +1,8 @@
+import classNames from 'classnames'
 import React from 'react'
-import styled, {css} from 'styled-components'
-import {Card} from './Card'
 
-export const TextStyle = css`
-    font-size: 17px;
-    color: ${(props) => props.theme.text};
-    font-family: inherit;
-`
-
-export const Container = styled(Card)`
-    height: 50px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-`
-
-const Check = styled.div<{checked: boolean}>`
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    margin-right: 15px;
-    transition: 0.2s all ease-in-out;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    background-color: ${(props) => props.theme.background};
-    cursor: pointer;
-
-    ${(props) =>
-        props.checked &&
-        css`
-            background-color: transparent;
-        `}
-`
-
-const CheckIcon = styled.img`
-    transition: 0.1s opacity ease-in-out;
-`
-
-const Label = styled.div`
-    position: relative;
-    ${TextStyle}
-`
-
-const Strikethrough = styled.div<{checked: boolean}>`
-    position: absolute;
-    top: 50%;
-    left: -3px;
-    right: -3px;
-    height: 2px;
-    background-color: ${(props) => props.theme.text};
-    border-radius: 2px;
-    transform: scaleX(0);
-    transform-origin: center left;
-    transition: 0.1s all ease-in-out;
-
-    ${(props) =>
-        props.checked &&
-        css`
-            transform: scaleX(1);
-        `};
-`
+export const containerStyle = 'h-12 mb-5 flex items-center rounded-full bg-gray-700 shadow-md px-4'
+export const textStyle = 'relative text-md color-gray-50'
 
 type TaskType = {
     id: number
@@ -71,14 +12,35 @@ type TaskType = {
 
 export const Task: React.FC<{task: TaskType; onClick: () => void}> = ({task, onClick}) => {
     return (
-        <Container onClick={onClick}>
-            <Check checked={task.checked}>
-                <CheckIcon src="/check.svg" style={{opacity: task.checked ? 1 : 0}} />
-            </Check>
-            <Label>
+        <div
+            onClick={onClick}
+            onKeyPress={onClick}
+            className={containerStyle}
+            role="checkbox"
+            aria-checked={task.checked}
+            tabIndex={0}
+        >
+            <div
+                className={classNames(
+                    'rounded-full w-5 h-5 mr-4 transition-all flex items-center justify-center bg-gray-900 cursor-pointer',
+                    task.checked && 'bg-transparent',
+                )}
+            >
+                <img
+                    src="/check.svg"
+                    className={classNames('transition-opacity', task.checked ? 'opacity-100' : 'opacity-0')}
+                    alt="check"
+                />
+            </div>
+            <div className={textStyle}>
                 {task.label}
-                <Strikethrough checked={task.checked} />
-            </Label>
-        </Container>
+                <div
+                    className={classNames(
+                        'absolute top-1/2 -left-1 -right-1 h-0.5 transform origin-left transition-transform',
+                        task.checked ? 'scale-x-1' : 'scale-x-0',
+                    )}
+                />
+            </div>
+        </div>
     )
 }
