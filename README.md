@@ -9,4 +9,5 @@ I use it as a sample app in my YouTube videos, which you can check out [here](ht
 1. Install the Blitz.js CLI: `npm install -g blitz`.
 1. Clone the repo and `cd` into it.
 1. Run `yarn install`.
+1. Run `blitz prisma migrate dev --preview-feature` to initialise the DB.
 1. Finally, run `blitz dev` to run it.
