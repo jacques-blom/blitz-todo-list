@@ -1,5 +1,5 @@
 import {Head} from 'blitz'
-import {ReactNode} from 'react'
+import {ReactNode, Suspense} from 'react'
 import {Heading} from '../components/Heading'
 
 type LayoutProps = {
@@ -14,7 +14,7 @@ const Layout = ({title, children}: LayoutProps) => {
                 <title>{title || 'BlitzTodos'}</title>
             </Head>
             <Heading>{title}</Heading>
-            {children}
+            <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
         </div>
     )
 }

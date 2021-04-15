@@ -9,3 +9,10 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+model Task {
+  id        Int      @id @default(autoincrement())
+  label     String
+  checked   Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
